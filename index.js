@@ -1,3 +1,5 @@
+// index.js
+
 const axios = require("axios");
 const xml2js = require("xml2js");
 const md = require("markdown-it")({
@@ -33,10 +35,18 @@ const RSS_URL = "https://infistudy.tistory.com/rss";
         items.forEach((item) => {
             const title = item.title[0];
             const content = item.description[0];
-            console.log(`Processing item: ${title}`);
+            const category = item.category ? item.category[0] : "uncategorized";
+            const categorySlug = slugify(category, { remove: /[*+~.()'"!:@]/g, lower: true });
+            const categoryPath = path.join("posts", categorySlug);
 
+            if (!fs.existsSync(categoryPath)) {
+                fs.mkdirSync(categoryPath, { recursive: true });
+                console.log(`Created category directory: ${categoryPath}`);
+            }
+
+            console.log(`Processing item: ${title}`);
             const markdownContent = md.render(content);
-            const fileName = path.join("posts", `${slugify(title, { remove: /[*+~.()'"!:@]/g, lower: true })}.md`);
+            const fileName = path.join(categoryPath, `${slugify(title, { remove: /[*+~.()'"!:@]/g, lower: true })}.md`);
             fs.writeFileSync(fileName, markdownContent, "utf8");
             console.log(`Created file: ${fileName}`);
         });
