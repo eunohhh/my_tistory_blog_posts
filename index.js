@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 const slugify = require("slugify");
 
-const RSS_URL = "https://infistudy.tistory.com/rss";
+const RSS_URL = "https://ifelseif.tistory.com/rss";
 
 (async () => {
     try {
