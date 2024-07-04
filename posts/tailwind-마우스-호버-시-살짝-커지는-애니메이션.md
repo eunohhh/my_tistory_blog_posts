@@ -1,0 +1,4 @@
+<pre id="code_1719712818137" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;div className="transform transition-transform duration-300 hover:scale-105"&gt;
+&lt;/div&gt;</code></pre>
+<p><figure class="imageblock alignCenter" data-ke-mobileStyle="widthOrigin" data-origin-width="672" data-origin-height="292"><span data-url="https://blog.kakaocdn.net/dn/sMx9f/btsIhVPpBBL/BmMsTd7nAMNZ3XPUrbO8Rk/img.gif" data-phocus="phocus"><img src="https://blog.kakaocdn.net/dn/sMx9f/btsIhVPpBBL/BmMsTd7nAMNZ3XPUrbO8Rk/img.gif" srcset="https://blog.kakaocdn.net/dn/sMx9f/btsIhVPpBBL/BmMsTd7nAMNZ3XPUrbO8Rk/img.gif" onerror="this.onerror=null; this.src='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png'; this.srcset='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png';" data-origin-width="672" data-origin-height="292"/></span></figure>
+</p>
