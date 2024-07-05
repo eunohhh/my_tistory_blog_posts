@@ -5,7 +5,7 @@
   return &lt;div&gt;{children}&lt;/div&gt;
 }</code></pre>
 <p data-ke-size="size16">&nbsp;</p>
-<p><figure class="imageblock alignCenter" data-ke-mobileStyle="widthOrigin" data-origin-width="1600" data-origin-height="444"><span data-url="https://blog.kakaocdn.net/dn/V4zYu/btsInx8dxm4/4dNS1DSwifXwfkUVQXpWDK/img.png" data-phocus="phocus"><img src="https://blog.kakaocdn.net/dn/V4zYu/btsInx8dxm4/4dNS1DSwifXwfkUVQXpWDK/img.png" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FV4zYu%2FbtsInx8dxm4%2F4dNS1DSwifXwfkUVQXpWDK%2Fimg.png" onerror="this.onerror=null; this.src='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png'; this.srcset='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png';" data-origin-width="1600" data-origin-height="444"/></span></figure>
+<p><figure class="imageblock alignCenter" data-ke-mobileStyle="widthOrigin" data-origin-width="1600" data-origin-height="444"><span data-url="https://blog.kakaocdn.net/dn/V4zYu/btsInx8dxm4/4dNS1DSwifXwfkUVQXpWDK/img.png" data-phocus="https://blog.kakaocdn.net/dn/V4zYu/btsInx8dxm4/4dNS1DSwifXwfkUVQXpWDK/img.png"><img src="https://blog.kakaocdn.net/dn/V4zYu/btsInx8dxm4/4dNS1DSwifXwfkUVQXpWDK/img.png" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FV4zYu%2FbtsInx8dxm4%2F4dNS1DSwifXwfkUVQXpWDK%2Fimg.png" onerror="this.onerror=null; this.src='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png'; this.srcset='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png';" data-origin-width="1600" data-origin-height="444"/></span></figure>
 </p>
 <p data-ke-size="size16">&nbsp;</p>
 <p data-ke-size="size16">&nbsp;</p>
