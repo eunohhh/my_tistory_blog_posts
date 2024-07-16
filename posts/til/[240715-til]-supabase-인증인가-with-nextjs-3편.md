@@ -119,4 +119,10 @@ return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 </a></figure>
 <p data-ke-size="size16">&nbsp;</p>
 <p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">그런데 희한한 점은 소셜 로그인인데 이메일이 같을 경우...<br />예를들어 깃헙에 사용된 이메일이 gmail 이고 이것이 google 과 같은 아디라면,<br />수파베이스 auth 스키마에는 그냥 업데이트만 됩니다? 허허</p>
+<p data-ke-size="size16">그런데 희한한 점은 소셜 로그인인데 이메일이 같을 경우...<br />예를들어 깃헙에 사용된 이메일이 gmail 이고 이것이 google 과 같은 아디라면,</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">provider가 다름에도 하나의 로우만 생기고,</p>
+<p data-ke-size="size16">접속시간등도&nbsp; 수파베이스 auth 스키마에는 그냥 업데이트만 됩니다? 허허</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">때문에 프로필 수정등을 해도 아이디가 같다면 다른 provider 로 접속했어도</p>
+<p data-ke-size="size16">똑같이 업데이트만 되므로 주의를 요합니다.</p>
