@@ -1,5 +1,5 @@
 <h2 data-ke-size="size26">내배캠 수료</h2>
-<p data-ke-size="size16">짧다면 짤고 길다면 긴 부트캠프가 내일이면 끝납니다.<br />til 은 계속 해서 작성할 예정이고<br />기존에 작성했던 것들은 분류작업을 해보려고 합니다.<br />시원섭섭합니다.</p>
+<p data-ke-size="size16">짧다면 짧고 길다면 긴 부트캠프가 내일이면 끝납니다.<br />til 은 계속 해서 작성할 예정이고<br />기존에 작성했던 것들은 분류작업을 해보려고 합니다.<br />시원섭섭합니다.</p>
 <h2 data-ke-size="size26">supabase.rpc</h2>
 <p data-ke-size="size16">내배캠 막바지에 supabase.rpc 라는 메서드를 사용할 일이 있었습니다.<br />sql 을 몰라서 생소한 기능이었는데 gpt 쌤에게 물어본 내용을 정리합니다.</p>
 <p data-ke-size="size16">&nbsp;</p>
