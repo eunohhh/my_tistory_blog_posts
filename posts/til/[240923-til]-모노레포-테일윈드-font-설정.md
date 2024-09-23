@@ -1,5 +1,39 @@
+<h2 data-ke-size="size26">next font 와 tailwind 로 모노레포에 폰트 적용하기</h2>
+<p data-ke-size="size16">모노레포 구성은 다음과 같은 상황입니다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">/apps/admin =&gt; nextjs app<br />/apps/invitation =&gt; nextjs app<br />/apps/www =&gt; nextjs app<br />/apps/storybook =&gt; storybook app<br />/packages/config-tailwind =&gt; 테일윈드 공용 설정들 모여 있는 곳<br />/packages/shared =&gt; 공용 컴포넌트 디렉토리(nextjs 아님)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이때 같은 폰트들을 각 app 들이 모두 사용합니다.</p>
+<p data-ke-size="size16">처음에 생각한 것은 shared 에만 폰트를 설정하고<br />각 app 에서 임포트 해서 쓰는 방법이었는데<br />shared는 nextjs가 아니어서 next font를 사용할 수 없었습니다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또한 storybook 의 경우는 폰트가 필요 없기도 하고요.<br />그래서 그냥 각 nextjs 앱마다 font 설정 파일을 생성하고<br />woff 파일은 shared 에 저장한 뒤 상대경로로 참조하는 것이 좋겠다고 생각했습니다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="javascript"><code>// src/fonts/fonts.ts
+import { Noto_Serif_KR as NotoSerifKr } from 'next/font/google';
+import localFont from 'next/font/local';
+<p>export const pretendard = localFont({
+src: '../../../../packages/shared/fonts/PretendardVariable.woff2',
+weight: '45 920',
+style: 'normal',
+display: 'swap',
+variable: '--font-pretendard',
+});</p>
+<p>export const notoSerifKr = NotoSerifKr({
+subsets: ['latin'],
+weight: ['200', '300', '400', '500', '600', '700', '900'],
+variable: '--font-notoSerifKr',
+});</p>
+<p>export const gowunBatang = localFont({
+src: '../../../../packages/shared/fonts/GowunBatangRegular.woff',
+style: 'normal',
+display: 'swap',
+variable: '--font-gowunBatang',
+});</code></pre></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">woff 파일도 각 app 마다 저장해야하는지,<br />packages/config-tailwind 에 public 을 만들고 여기에 넣는 방법은 없는지<br />등등이 궁금해서 o1 선생님에게 물어본 내용을 첨부합니다.<br />(참고만 했습니다 gpt가 알려준대로 하면 안됨)</p>
+<h2 data-ke-size="size26">GPT질의응답</h2>
 <p data-ke-size="size16">모노레포(monorepo) 환경에서 Turborepo를 사용하고 계시며, <code>packages/config-tailwind</code> 경로에 Tailwind CSS 설정을 공유하는 패키지인 <code>@repo/tailwind-config</code>가 있다고 하셨습니다. 이 패키지의 <code>package.json</code>은 다음과 같습니다:</p>
-<pre class="javascript" data-ke-language="javascript"><code>{
+<pre class="json"><code>{
   "name": "@repo/tailwind-config",
   "version": "0.0.0",
   "private": true,
@@ -49,7 +83,7 @@
 <ul style="list-style-type: disc;" data-ke-list-type="disc">
 <li><code>@repo/tailwind-config</code> 패키지의 Tailwind 설정에서 <code>@font-face</code>를 정의할 때 경로를 그대로 사용합니다.</li>
 </ul>
-<pre class="css" data-ke-language="css"><code>/* packages/config-tailwind/tailwind.css */
+<pre class="css"><code>/* packages/config-tailwind/tailwind.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -82,13 +116,7 @@ src: url(/fonts/Roboto.woff2) format('woff2');
 <ul style="list-style-type: disc;" data-ke-list-type="disc">
 <li>폰트 파일을 CDN이나 외부 서버에 호스팅하고, <code>@font-face</code>에서 해당 URL을 사용합니다.</li>
 <li>예:</li>
-<li><code class="language-css">@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://your-cdn.com/fonts/Roboto.woff2') format('woff2');
-}</code></li>
+<li><code>@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://your-cdn.com/fonts/Roboto.woff2') format('woff2'); }</code></li>
 </ul>
 </li>
 <li><b>상대 경로 사용 및 빌드 설정 조정:</b>
