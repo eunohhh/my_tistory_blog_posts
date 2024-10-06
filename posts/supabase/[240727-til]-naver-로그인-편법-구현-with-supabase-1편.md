@@ -134,9 +134,9 @@ return &amp;lt;div&amp;gt;Loading...&amp;lt;/div&amp;gt;;
 <p>};</p>
 <p>export default LoadingPage;</code></pre></p>
 <p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">위 구조를 보면 /loading 으로 콜백될 때 주소에 해시 값을 가지고 오게 됩니다.<br /><code>/loading#access_token=어쩌구저쩌구</code> 같은 식입니다.</p>
+<p data-ke-size="size16">위 구조를 보면 /loading 으로 콜백될 때 주소에 토큰 값을 가지고 오게 됩니다.<br /><code>/loading#access_token=어쩌구저쩌구</code> 같은 식입니다.</p>
 <p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">그래서 해시가 있을때만 naverLogIn 함수를 호출합니다.<br />naverLogIn 함수 안에서도 해시값이 필요한데, 그냥 파라미터로 넘기진 않았습니다.</p>
+<p data-ke-size="size16">그래서 토큰이 있을때만 naverLogIn 함수를 호출합니다.<br />naverLogIn 함수 안에서도 토큰값이 필요한데, 그냥 파라미터로 넘기진 않았습니다.</p>
 <p data-ke-size="size16">&nbsp;</p>
 <p data-ke-size="size16">이제 이 토큰을 서버쪽 route handler로 넘겨야 합니다.</p>
 <p data-ke-size="size16">&nbsp;</p>

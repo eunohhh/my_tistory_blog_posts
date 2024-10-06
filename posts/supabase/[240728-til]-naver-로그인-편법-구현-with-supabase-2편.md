@@ -71,7 +71,7 @@ naverLogIn,
 <p>}</code></pre></p>
 <h2 data-ke-size="size26">7. /api/callback/naver/route.ts 라우트핸들러</h2>
 <p data-ke-size="size16">이제 라우트 핸들러를 만들어줍니다.</p>
-<pre class="aspectj"><code>const FIXED_PASSWORD = process.env.NAVER_PROVIDER_LOGIN_SECRET;
+<pre class="typescript" data-ke-language="typescript"><code>const FIXED_PASSWORD = process.env.NAVER_PROVIDER_LOGIN_SECRET;
 <p>export async function POST(request: Request) {
 const { accessToken } = await request.json();</p>
 <pre><code>if (!FIXED_PASSWORD) {
