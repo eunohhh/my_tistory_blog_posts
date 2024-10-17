@@ -1,0 +1,14 @@
+<p data-ke-size="size16">블로그 그냥 만들어도되고 이전해도 되고 한데</p>
+<p data-ke-size="size16">쓰던거 귀찮아서 그냥 쓰고 있었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 자꾸 광고를 누르고 간다는 사람들이 있어서</p>
+<p data-ke-size="size16">웬 광고 하고 있었는데 알고보니&nbsp;</p>
+<p data-ke-size="size16">모바일웹에서 티스토리 자체 배너광고가 돌고 있었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">스킨 업로드로 간단히 display: none 해봤는데</p>
+<p data-ke-size="size16">/m에는 커스텀 스킨이 적용이 안되고 있었다.</p>
+<p data-ke-size="size16">딱 보고 그것도 못알아차려서 뭐지 하다니 실격이다 실격...</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">암튼 그래서 그냥 설정에서 모바일웹 자동연결 꺼봤더니 사라졌다</p>
+<p data-ke-size="size16">... 별 어이없는 일이 다있다</p>
+<p data-ke-size="size16">&nbsp;</p>
