@@ -4,13 +4,13 @@
 <pre class="bash"><code>pnpm exec husky init</code></pre>
 <h3 data-ke-size="size23">3. package.json 수정</h3>
 <p data-ke-size="size16">lint 와 format 만 수정</p>
-<pre class="json"><code>{
+<pre class="javascript" data-ke-language="javascript"><code>{
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --cache .",
-    "prepare": "husky install",
+    "prepare": "husky",
     "format": "prettier --cache --write ."
   }
 }</code></pre>
