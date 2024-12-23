@@ -29,28 +29,33 @@
 <p data-ke-size="size16">최종 설정은 아래와 같습니다.</p>
 <p data-ke-size="size16">&nbsp;</p>
 <p data-ke-size="size16">먼저 package.json 입니다. lint-staged 부분을 추가합니다.</p>
-<pre class="json"><code>{
+<pre class="javascript" data-ke-language="javascript"><code>{
   //...
+    "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "prepare": "husky",
+    "format": "prettier --cache --write .",
+    "lint": "eslint --cache .",
+    "test": "jest",
+    "lint-staged": "pnpm dlx lint-staged"
+  },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json}": [
+    "*.{js,jsx,ts,tsx,json,yaml,yml}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "git add"
     ]
-  }
+  },
 }</code></pre>
 <p data-ke-size="size16">&nbsp;</p>
 <p data-ke-size="size16">다음으로 pre-commit 입니다.<br />.husky/pre-commit</p>
-<pre class="bash"><code>#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-<p>pnpm lint-staged</code></pre></p>
+<pre class="javascript" data-ke-language="javascript"><code>pnpm lint-staged</code></pre>
 <p data-ke-size="size16">&nbsp;</p>
 <p data-ke-size="size16">다음으로 pre-push 입니다. 여기에 build가 추가되었습니다.<br />.husky/pre-push</p>
-<pre class="awk"><code>#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-<p>pnpm format
-pnpm build || exit 1</code></pre></p>
+<pre class="javascript" data-ke-language="javascript"><code>pnpm format
+pnpm build || exit 1</code></pre>
 <p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">다음으로 post-commit 입니다.<br />여기서 commit 후 변경점들을 다시 commit &amp; push 하고<br />자동으로 커밋 메시지를 남깁니다.<br />.husky/post-commit</p>
-<pre class="bash"><code>#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-<p>git add . &amp;&amp; git commit -m &quot;chore: apply lint/format fixes&quot; || true &amp;&amp; git push</code></pre></p>
+<p data-ke-size="size16">다음으로 post-commit 입니다.<br />여기서 commit 후 변경점이 있다면 다시 commit &amp; push 하고<br />자동으로 커밋 메시지를 남깁니다.<br />.husky/post-commit</p>
+<pre class="javascript" data-ke-language="javascript"><code>git add . &amp;&amp; git commit -m "chore: apply lint/format fixes" &amp;&amp; git push</code></pre>
