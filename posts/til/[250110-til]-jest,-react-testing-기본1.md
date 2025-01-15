@@ -1,8 +1,9 @@
-<h3>1. 설치</h3>
-<pre><code class="language-shell">pnpm add -D @testing-library/dom @testing-library/jest-dom @testing-library/react @testing-library/user-event @types/jest jest jest-environment-jsdom msw</code></pre>
-<h3>2. jest.config 설정</h3>
-<pre><code class="language-ts">import type { Config } from &#39;jest&#39;;
-import nextJest from &#39;next/jest.js&#39;;
+<h3 data-ke-size="size23">1. 설치</h3>
+<pre class="javascript" data-ke-language="javascript"><code>pnpm add -D @testing-library/dom @testing-library/jest-dom @testing-library/react @testing-library/user-event @types/jest jest jest-environment-jsdom msw
+pnpm create jest@latest</code></pre>
+<h3 data-ke-size="size23">2. jest.config 설정</h3>
+<pre class="typescript"><code>import type { Config } from 'jest';
+import nextJest from 'next/jest.js';
 <p>const createJestConfig = nextJest({
 dir: './',
 });</p>
@@ -27,8 +28,8 @@ testEnvironment: 'jsdom',</p>
 testMatch: ['**/*.test.(ts|tsx)'],
 };</p>
 <p>export default createJestConfig(config);</code></pre></p>
-<h3>3. Mock Query Client 설정</h3>
-<pre><code class="language-tsx">import { QueryClient } from &#39;@tanstack/react-query&#39;;
+<h3 data-ke-size="size23">3. Mock Query Client 설정</h3>
+<pre class="javascript"><code>import { QueryClient } from '@tanstack/react-query';
 <p>const createTestQueryClient = () =&gt;
 new QueryClient({
 defaultOptions: {
@@ -39,8 +40,8 @@ staleTime: Infinity,
 },
 });</p>
 <p>const testQueryClient = createTestQueryClient();</code></pre></p>
-<h3>4. Mock Router 설정</h3>
-<pre><code class="language-ts">import &#39;@testing-library/jest-dom&#39;;
+<h3 data-ke-size="size23">4. Mock Router 설정</h3>
+<pre class="rust"><code>import '@testing-library/jest-dom';
 <p>const createRouter = () =&gt; ({
 push: jest.fn(),
 replace: jest.fn(),
@@ -50,10 +51,10 @@ refresh: jest.fn(),
 prefetch: jest.fn(),
 });</p>
 <p>export const router = createRouter();</code></pre></p>
-<h3>5. Render 잘 되는지 기본 테스트</h3>
-<p>만약 테스트할 컴포넌트가 SignInForm 이라면 아래처럼...</p>
-<pre><code class="language-tsx">import &#39;@testing-library/jest-dom&#39;;
-import { render } from &#39;@testing-library/react&#39;;
+<h3 data-ke-size="size23">5. Render 잘 되는지 기본 테스트</h3>
+<p data-ke-size="size16">만약 테스트할 컴포넌트가 SignInForm 이라면 아래처럼...</p>
+<pre class="javascript"><code>import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
 <p>describe('SignIn', () =&gt; {
 const renderWithRouterAndQueryClient = () =&gt;
 render(
