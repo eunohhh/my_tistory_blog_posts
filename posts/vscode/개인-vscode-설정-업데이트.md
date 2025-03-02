@@ -1,178 +1,179 @@
-<pre><code class="language-json">{
+<pre class="javascript" data-ke-language="javascript"><code>{
     // ========================
     // Workspace UI Settings
     // ========================
-    &quot;workbench.iconTheme&quot;: &quot;material-icon-theme&quot;,
-    &quot;workbench.colorTheme&quot;: &quot;Default Dark Modern&quot;,
-    &quot;workbench.colorCustomizations&quot;: {
-        &quot;[Default Dark Modern]&quot;: {
-            &quot;activityBarBadge.background&quot;: &quot;#2979FF&quot;,
-            &quot;activityBar.activeBorder&quot;: &quot;#2979FF&quot;,
-            &quot;list.activeSelectionForeground&quot;: &quot;#2979FF&quot;,
-            &quot;list.inactiveSelectionForeground&quot;: &quot;#2979FF&quot;,
-            &quot;list.highlightForeground&quot;: &quot;#2979FF&quot;,
-            &quot;scrollbarSlider.activeBackground&quot;: &quot;#2979FF50&quot;,
-            &quot;editorSuggestWidget.highlightForeground&quot;: &quot;#2979FF&quot;,
-            &quot;textLink.foreground&quot;: &quot;#2979FF&quot;,
-            &quot;progressBar.background&quot;: &quot;#2979FF&quot;,
-            &quot;pickerGroup.foreground&quot;: &quot;#2979FF&quot;,
-            &quot;tab.activeBorder&quot;: &quot;#2979FF&quot;,
-            &quot;notificationLink.foreground&quot;: &quot;#2979FF&quot;,
-            &quot;editorWidget.resizeBorder&quot;: &quot;#2979FF&quot;,
-            &quot;editorWidget.border&quot;: &quot;#2979FF&quot;,
-            &quot;settings.modifiedItemIndicator&quot;: &quot;#2979FF&quot;,
-            &quot;settings.headerForeground&quot;: &quot;#2979FF&quot;,
-            &quot;panelTitle.activeBorder&quot;: &quot;#2979FF&quot;,
-            &quot;breadcrumb.activeSelectionForeground&quot;: &quot;#2979FF&quot;,
-            &quot;menu.selectionForeground&quot;: &quot;#2979FF&quot;,
-            &quot;menubar.selectionForeground&quot;: &quot;#2979FF&quot;,
-            &quot;editor.findMatchBorder&quot;: &quot;#2979FF&quot;,
-            &quot;selection.background&quot;: &quot;#2979FF40&quot;,
-            &quot;statusBarItem.remoteBackground&quot;: &quot;#2979FF&quot;
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorCustomizations": {
+        "[Default Dark Modern]": {
+            "activityBarBadge.background": "#2979FF",
+            "activityBar.activeBorder": "#2979FF",
+            "list.activeSelectionForeground": "#2979FF",
+            "list.inactiveSelectionForeground": "#2979FF",
+            "list.highlightForeground": "#2979FF",
+            "scrollbarSlider.activeBackground": "#2979FF50",
+            "editorSuggestWidget.highlightForeground": "#2979FF",
+            "textLink.foreground": "#2979FF",
+            "progressBar.background": "#2979FF",
+            "pickerGroup.foreground": "#2979FF",
+            "tab.activeBorder": "#2979FF",
+            "notificationLink.foreground": "#2979FF",
+            "editorWidget.resizeBorder": "#2979FF",
+            "editorWidget.border": "#2979FF",
+            "settings.modifiedItemIndicator": "#2979FF",
+            "settings.headerForeground": "#2979FF",
+            "panelTitle.activeBorder": "#2979FF",
+            "breadcrumb.activeSelectionForeground": "#2979FF",
+            "menu.selectionForeground": "#2979FF",
+            "menubar.selectionForeground": "#2979FF",
+            "editor.findMatchBorder": "#2979FF",
+            "selection.background": "#2979FF40",
+            "statusBarItem.remoteBackground": "#2979FF"
         }
     },
 
     // ========================
     // Editor &amp; Formatting Settings
     // ========================
-    &quot;editor.formatOnSave&quot;: true, // 저장 시 자동 포맷팅
-    &quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;,
-    &quot;editor.tabSize&quot;: 2,
-    &quot;editor.linkedEditing&quot;: true,
-    &quot;editor.mouseWheelZoom&quot;: true,
+    "editor.formatOnSave": true, // 저장 시 자동 포맷팅
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.linkedEditing": true,
+    "editor.mouseWheelZoom": true,
 
     // ========================
     // ESLint &amp; Prettier
     // ========================
-    &quot;eslint.codeActionsOnSave.rules&quot;: null,
-    &quot;editor.codeActionsOnSave&quot;: {
-        &quot;source.organizeImports&quot;: &quot;always&quot;,
-        &quot;source.fixAll.eslint&quot;: &quot;always&quot;
+    "eslint.codeActionsOnSave.rules": null,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+        "source.fixAll.eslint": "always"
     },
-    &quot;eslint.rules.customizations&quot;: [
+    "eslint.rules.customizations": [
         {
-            &quot;rule&quot;: &quot;react/jsx-sort-props&quot;,
-            &quot;severity&quot;: &quot;off&quot;
+            "rule": "react/jsx-sort-props",
+            "severity": "off"
         },
         {
-            &quot;rule&quot;: &quot;react/function-component-definition&quot;,
-            &quot;severity&quot;: &quot;off&quot;
+            "rule": "react/function-component-definition",
+            "severity": "off"
         },
         {
-            &quot;rule&quot;: &quot;@typescript-eslint/consistent-indexed-object-style&quot;,
-            &quot;severity&quot;: &quot;off&quot;
+            "rule": "@typescript-eslint/consistent-indexed-object-style",
+            "severity": "off"
         },
         {
-            &quot;rule&quot;: &quot;@typescript-eslint/prefer-string-starts-ends-with&quot;,
-            &quot;severity&quot;: &quot;off&quot;
+            "rule": "@typescript-eslint/prefer-string-starts-ends-with",
+            "severity": "off"
         },
         {
-            &quot;rule&quot;: &quot;@typescript-eslint/explicit-function-return-type&quot;,
-            &quot;severity&quot;: &quot;off&quot;
+            "rule": "@typescript-eslint/explicit-function-return-type",
+            "severity": "off"
         },
         {
-            &quot;rule&quot;: &quot;unicorn/filename-case&quot;,
-            &quot;severity&quot;: &quot;off&quot;
+            "rule": "unicorn/filename-case",
+            "severity": "off"
         }
     ],
 
     // ========================
     // TypeScript Settings
     // ========================
-    &quot;[typescript]&quot;: {
-        &quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    &quot;[typescriptreact]&quot;: {
-        &quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    &quot;typescript.updateImportsOnFileMove.enabled&quot;: &quot;always&quot;,
-    &quot;typescript.inlayHints.enumMemberValues.enabled&quot;: true,
-    &quot;typescript.inlayHints.functionLikeReturnTypes.enabled&quot;: true,
-    &quot;typescript.inlayHints.parameterTypes.enabled&quot;: true,
-    &quot;typescript.inlayHints.propertyDeclarationTypes.enabled&quot;: true,
-    &quot;typescript.inlayHints.variableTypes.enabled&quot;: true,
-    &quot;typescript.inlayHints.parameterNames.enabled&quot;: &quot;all&quot;,
-    &quot;typescript.experimental.updateImportsOnPaste&quot;: true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "typescript.experimental.updateImportsOnPaste": true,
 
     // ========================
     // JavaScript &amp; JSON Settings
     // ========================
-    &quot;[javascript]&quot;: {
-        &quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    &quot;[json]&quot;: {
-        &quot;editor.defaultFormatter&quot;: &quot;vscode.json-language-features&quot;
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
-    &quot;[jsonc]&quot;: {
-        &quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    &quot;javascript.updateImportsOnFileMove.enabled&quot;: &quot;always&quot;,
-    &quot;javascript.preferences.importModuleSpecifierEnding&quot;: &quot;minimal&quot;,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "javascript.preferences.importModuleSpecifierEnding": "minimal",
 
     // ========================
     // CSS, SCSS, Tailwind Settings
     // ========================
-    &quot;[css]&quot;: {
-        &quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    &quot;[scss]&quot;: {
-        &quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    &quot;tailwindCSS.emmetCompletions&quot;: true,
-    &quot;tailwindCSS.experimental.classRegex&quot;: [
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.experimental.classRegex": [
         [
-            &quot;cva$begin:math:text$([^)]*)\\$end:math:text$&quot;,
-            &quot;[\&quot;&#39;`]([^\&quot;&#39;`]*).*?[\&quot;&#39;`]&quot;
+            "cva$begin:math:text$([^)]*)\\$end:math:text$",
+            "[\"'`]([^\"'`]*).*?[\"'`]"
         ],
-        [&quot;cx\\(([^)]*)\\)&quot;, &quot;(?:&#39;|\&quot;|`)([^&#39;]*)(?:&#39;|\&quot;|`)&quot;],
-        [&quot;clsx\\(([^)]*)\\)&quot;, &quot;(?:&#39;|\&quot;|`)([^&#39;]*)(?:&#39;|\&quot;|`)&quot;]
+        ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+        ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
     ],
 
     // ========================
     // Svelte Settings
     // ========================
-    &quot;[svelte]&quot;: {
-        &quot;editor.defaultFormatter&quot;: &quot;svelte.svelte-vscode&quot;
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
     },
-    &quot;svelte.enable-ts-plugin&quot;: true,
+    "svelte.enable-ts-plugin": true,
 
     // ========================
     // Python Settings
     // ========================
-    &quot;[python]&quot;: {
-        &quot;editor.formatOnType&quot;: true,
-        &quot;editor.defaultFormatter&quot;: &quot;ms-python.python&quot;
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.python"
     },
-    &quot;python.analysis.typeCheckingMode&quot;: &quot;basic&quot;,
+    "python.analysis.typeCheckingMode": "basic",
 
     // ========================
     // Terminal Settings
     // ========================
-    &quot;terminal.integrated.fontFamily&quot;: &quot;MesloLGS NF&quot;,
-    &quot;terminal.integrated.enableImages&quot;: true,
-    &quot;terminal.integrated.defaultProfile.linux&quot;: &quot;zsh&quot;,
-    &quot;terminal.integrated.env.osx&quot;: {},
-    &quot;terminal.integrated.env.linux&quot;: {},
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.enableImages": true,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.env.osx": {},
+    "terminal.integrated.env.linux": {},
 
     // ========================
     // Git Settings
     // ========================
-    &quot;git.autofetch&quot;: true,
-    &quot;git.ignoreRebaseWarning&quot;: true,
-    &quot;git.openRepositoryInParentFolders&quot;: &quot;never&quot;,
+    "git.autofetch": true,
+    "git.ignoreRebaseWarning": true,
+    "git.openRepositoryInParentFolders": "never",
 
     // ========================
     // UI &amp; Workspace Settings
     // ========================
-    &quot;window.commandCenter&quot;: false,
-    &quot;workbench.layoutControl.enabled&quot;: false,
-    &quot;workbench.startupEditor&quot;: &quot;none&quot;,
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.startupEditor": "none",
 
     // ========================
     // Miscellaneous Settings
     // ========================
-    &quot;security.workspace.trust.untrustedFiles&quot;: &quot;open&quot;,
-    &quot;files.autoSave&quot;: &quot;afterDelay&quot;,
-    &quot;chatgpt.lang&quot;: &quot;ko&quot;,
-    &quot;compile-hero.disable-compile-files-on-did-save-code&quot;: false
+    "security.workspace.trust.untrustedFiles": "open",
+    "files.autoSave": "afterDelay",
+    "chatgpt.lang": "ko",
+    "compile-hero.disable-compile-files-on-did-save-code": false
 }</code></pre>
