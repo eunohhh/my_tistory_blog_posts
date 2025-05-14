@@ -1,7 +1,7 @@
 <h2 data-ke-size="size26">Q1</h2>
 <p data-ke-size="size16">저는 계속 RSC 와 Next.js 에서 use server 혹은 use client 지시어에 대해 정확히 무슨 일을 하는지 궁금했습니다.<br />단순하게는 use server 를 사용하면 해당 파일은 server side 가 되고, use client 를 사용하면 client side 가 되는 건가? 라고 생각했는데요. Next.js 에서는 아무것도 안쓰면 자동으로 서버 컴포넌트가 되기도 해서 정확한 의미가 궁금했어요.</p>
 <p data-ke-size="size16">검색을 해보니 use server 는 사용된 모듈 내의 함수를 마치 http 엔드포인트 처럼 만들어서 클라이언트가 사용할 수 있도록 하는 것이고, use client 는 프론트엔드에서 동작할 함수(=컴포넌트)가 데이터를 서버로부터 받을 수 있게하고, 서버에서 렌더링 가능하도록 한다는 것을 알 수 있었어요.</p>
-<p data-ke-size="size16">제가 이해한 바가 맞다고 할 수 있을지, 그리고 선생님이 생각도 설명해주세요.</p>
+<p data-ke-size="size16">제가 이해한 바가 맞다고 할 수 있을지, 그리고 선생님의 생각도 설명해주세요.</p>
 <p data-ke-size="size16">&nbsp;</p>
 <p data-ke-size="size16">&nbsp;</p>
 <h2 data-ke-size="size26">A1</h2>
