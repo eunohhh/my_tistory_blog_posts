@@ -209,7 +209,7 @@ reader.releaseLock();
 }
 }</code></pre></p>
 <p data-ke-size="size16">&nbsp;</p>
-<h3 data-ke-size="size23">  steamedQuery</h3>
+<h3 data-ke-size="size23">  streamedQuery</h3>
 <ul style="list-style-type: disc;" data-ke-list-type="disc">
 <li>streamedQuery는 내부적으로 for await...of로 데이터를 수신</li>
 <li>수신된 이미지 데이터는 React state나 UI에서 사용 가능</li>
