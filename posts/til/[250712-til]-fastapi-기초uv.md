@@ -43,18 +43,9 @@ postgres_data:</code></pre></p>
 touch app/__init__.py app/main.py app/database.py app/models.py app/schemas.py app/crud.py app/config.py</code></pre>
 <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
 <li>env 알아서 설정
-<pre class="python" data-ke-language="python"><code># 데이터베이스 설정
-DATABASE_URL=postgresql://user:password@localhost:5432/fastapi_practice
-<p>#또는 개별 설정
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=fastapi_practice
-DB_USER=user
-DB_PASSWORD=password</p>
-<p>#애플리케이션 설정
-APP_NAME=&quot;도서 관리 API&quot;
-APP_VERSION=&quot;1.0.0&quot;
-DEBUG=True</code></pre></p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>#&nbsp;데이터베이스&nbsp;설정<br />DATABASE_URL=postgresql://user:password@localhost:5432/fastapi_practice<br /><br />#또는&nbsp;개별&nbsp;설정<br />DB_HOST=localhost<br />DB_PORT=5432<br />DB_NAME=fastapi_practice<br />DB_USER=user<br />DB_PASSWORD=password<br /><br />#애플리케이션&nbsp;설정<br />APP_NAME="도서&nbsp;관리&nbsp;API"<br />APP_VERSION="1.0.0"<br />DEBUG=True</li>
+</ul>
 </li>
 <li>gitignore 알아서 잘 설정</li>
 </ol>
