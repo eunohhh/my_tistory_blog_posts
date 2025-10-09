@@ -167,7 +167,7 @@ process.env.HASURA_GRAPHQL_ENDPOINT ??
 });</code></pre></p>
 <h3 data-ke-size="size23">3.3 GraphQL Code Generator 설정</h3>
 <h4 data-ke-size="size20">codegen.ts 작성</h4>
-<pre class="dts"><code>import type { CodegenConfig } from "@graphql-codegen/cli";
+<pre class="typescript" data-ke-language="typescript"><code>import type { CodegenConfig } from "@graphql-codegen/cli";
 <p>const config: CodegenConfig = {
 overwrite: true,
 schema: [
