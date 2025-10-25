@@ -1,5 +1,5 @@
 <h1>Hasura(GQL) 사용시 3rd-Party 쿠키 정책 문제</h1>
-<h2 data-ke-size="size26">Q) credentials: "include" 라면 알아서 쿠키 전송 Ok?</h2>
+<h2 data-ke-size="size26">Q) credentials: "include" 인데도 쿠키 자동 전송 안될 수 있는거 맞음?</h2>
 <p data-ke-size="size16">제가 cookie 기반에서 httponly, secured, domain, samesite 설명을 여러가지로 변주해서 시도해봤지만 결론은 브라우저의 third-party cookie 정책으로 인해 쿠키가 자동 전송되지 않는데 이게 맞나요?(심지어 서브도메인 - api.myapp.com &lt;&gt; myapp.com 이더라도)</p>
 <h2 data-ke-size="size26">A) 맞다.</h2>
 <p data-ke-size="size16">맞아요. 결론부터 말하면: 브라우저가 Hasura로 쿠키를 보내주지 못하면(3rd‑party 쿠키 차단), Remote Schema를 써도 Hasura가 JWT를 검증할 수 없고, 따라서 <code>x-hasura-user-id</code> 같은 세션 변수도 생성되지 않습니다. 그래서 yoga 리졸버에서 userId를 받을 수 없어요.</p>
