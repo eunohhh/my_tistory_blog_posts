@@ -1,6 +1,6 @@
 <h2 data-ke-size="size26">GraphQL Yoga 역할(+Hasura Remote Schema)</h2>
 <h3 data-ke-size="size23">예시</h3>
-<pre class="typescript"><code>// /api/graphql/route.ts
+<pre class="python" data-ke-language="python"><code>// /api/graphql/route.ts
 import { DateTimeTypeDefinition } from "graphql-scalars";
 import { createSchema, createYoga } from "graphql-yoga";
 import { v4 as uuid } from "uuid";
@@ -45,7 +45,7 @@ const userId = ctx.request.headers.get(&quot;x-hasura-user-id&quot;);</p>
             },
         },
         Mutation: {
-            // FIXME: Mutation TEST 용도. 추후 다른 Mutation 추가 시 ok 는 삭제해주세요.
+            // Mutation TEST 용도. 임시코드
             ok() {
                 return &quot;ok&quot;;
             },
@@ -54,11 +54,11 @@ const userId = ctx.request.headers.get(&quot;x-hasura-user-id&quot;);</p>
 }),
 graphqlEndpoint: &quot;/api/graphql&quot;,
 graphiql: process.env.NODE_ENV !== &quot;production&quot;,
-cors: {
-credentials: true,
+	cors: {
+	credentials: true,
 },
 fetchAPI: {
-Response: Response,
+	Response: Response,
 },
 </code></pre>
 <p>});</p>

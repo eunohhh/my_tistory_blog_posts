@@ -6,8 +6,9 @@
 <li><b><code>getToken</code> 없이 <code>credentials: 'include'</code>만으로는 절대 작동하지 않음!</b></li>
 <li><b>가장 안전한 방법</b>은 요청별 클라이언트를 생성하는 것이지만, <code>getToken</code>을 올바르게 구현하면 <code>registerApolloClient</code>만으로 충분히 사용 가능.</li>
 </ol>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style1" />
 <h3 data-ke-size="size23">코드 예시</h3>
-<pre class="python" data-ke-language="python"><code>// /lib/apollo/server.ts
+<pre class="javascript" data-ke-language="javascript"><code>// /lib/apollo/server.ts
 import { Defer20220824Handler } from "@apollo/client/incremental";
 import {
     ApolloClient,
@@ -21,14 +22,16 @@ import { getTokenFromCookie } from "../auth/server-utils";
 return new ApolloClient({
 cache: new InMemoryCache(),
 link: createApolloLinks({
+// 여기가 DI
 isServer: true,
 hasuraGraphQLEndpoint: env.GRAPHQL_ENDPOINT,
-}),
-// 여기가 DI
 getToken: getTokenFromCookie,
 incrementalHandler: new Defer20220824Handler(),
+}),
 });
 });</code></pre></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style1" />
 <h2 data-ke-size="size26">이거 싱글톤인데 문제 안됨? &gt;&gt; 될 수 있음! 주의필요!</h2>
 <h3 data-ke-size="size23">1. <code>registerApolloClient</code>의 동작 방식</h3>
 <p data-ke-size="size16"><code>registerApolloClient</code>는 <b>React의 <code>cache()</code> API</b>를 사용합니다:</p>
@@ -141,6 +144,7 @@ const { data } = await client.query({ query: userQuery });
 <li><code>getTokenFromCookie()</code> 내부에서 <code>cookies()</code>를 호출하면, 그 순간의 요청 쿠키를 읽어옴</li>
 <li>이게 올바르게 동작하려면 <b>반드시 async 컨텍스트 내에서 호출</b>되어야 함</li>
 </ul>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style1" />
 <h3 data-ke-size="size23">5. 공식 문서 예제의 의도</h3>
 <p data-ke-size="size16">Apollo의 Next.js 통합 패키지는:</p>
 <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
@@ -180,6 +184,8 @@ const { data } = await getClient().query({
 query: userQuery,
 fetchPolicy: 'no-cache', // 또는 'network-only'
 });</code></pre></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style1" />
 <h3 data-ke-size="size23">7. 부록</h3>
 <h4 data-ke-size="size20">query의 fetchPolicy 와 HttpLink의 fetchOptions 차이</h4>
 <ul style="list-style-type: disc;" data-ke-list-type="disc">
