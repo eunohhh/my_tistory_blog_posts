@@ -1,6 +1,6 @@
 <h2 data-ke-size="size26">GraphQL Yoga 역할(+Hasura Remote Schema)</h2>
 <h3 data-ke-size="size23">예시</h3>
-<pre class="python" data-ke-language="python"><code>// /api/graphql/route.ts
+<pre class="javascript" data-ke-language="javascript"><code>// /api/graphql/route.ts
 import { DateTimeTypeDefinition } from "graphql-scalars";
 import { createSchema, createYoga } from "graphql-yoga";
 import { v4 as uuid } from "uuid";
