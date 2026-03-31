@@ -1,0 +1,100 @@
+<h1>Sentry에서 잡힌 Safari TypeError의 정체 &mdash; Facebook In-App Browser의 주입 스크립트</h1>
+<h2 data-ke-size="size26">발단: Sentry에 잡힌 알 수 없는 에러</h2>
+<p data-ke-size="size16">프로덕션 Sentry 대시보드에 처음 보는 에러가 올라왔다.</p>
+<pre class="livecodeserver"><code>TypeError: Attempting to change value of a readonly property.
+    at defineProperty ([native code])
+    at ? (app:///10e8bc2c-fca1-4aa8-9c1d-87e872816d2a/ready:1:4715)
+    at global code (app:///10e8bc2c-fca1-4aa8-9c1d-87e872816d2a/ready:1:4819)</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">프로젝트는 Next.js 16 (App Router) + React Compiler + Turbopack 스택이고,</p>
+<p data-ke-size="size16">에러가 발생한 페이지는 결제 직전의 <code>/ready</code> 페이지였다.</p>
+<p data-ke-size="size16">"readonly property를 변경하려 했다"는 메시지, <code>Object.defineProperty</code>에서의 실패,</p>
+<p data-ke-size="size16">그리고 <code>global code</code> 시점 실행.</p>
+<p data-ke-size="size16">뭔가 심각해 보였다.</p>
+<hr data-ke-style="style1" />
+<h2 data-ke-size="size26">삽질 1: React Compiler를 의심하다</h2>
+<p data-ke-size="size16">스택 트레이스에서 <code>defineProperty ([native code])</code>가 보이니까,</p>
+<p data-ke-size="size16">React Compiler가 memoization 캐시를 설정할 때 <code>Object.defineProperty</code>를 사용하는 게 아닌가 의심했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><code>reactCompiler: true</code>로 활성화된 상태였고, Safari에서만 발생하는 것 같았으니 "React Compiler + Safari = 충돌"이라는 가설이 그럴듯했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>결과: 배제.</b> React Compiler의 출력물을 분석해보니, 컴파일러는 <code>Object.defineProperty</code>를 전혀 사용하지 않는다. 출력은 <code>import { c as _c } from "react/compiler-runtime"</code>, <code>const $ = _c(N)</code>, 그리고 if/else 캐시 체크가 전부다. 모듈 레벨 변환도 import문 추가 외에는 없다.</p>
+<h2 data-ke-size="size26">삽질 2: Turbopack 모듈 시스템을 의심하다</h2>
+<p data-ke-size="size16">그러면 <code>defineProperty</code>를 호출하는 건 번들러인 Turbopack이 아닌가?</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Turbopack의 <code>__turbopack_esm__</code> 함수는 실제로 <code>Object.defineProperty</code>로 모듈 exports를 정의하고, <code>configurable: true</code>를 생략하면 기본값이 <code>false</code>가 되어 재정의 시 에러가 발생할 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Next.js GitHub에서도 Turbopack + React Compiler 조합의 불안정성이 보고된 이슈들(#78163, #78924)이 있었고,</p>
+<p data-ke-size="size16">Safari 특유의 Turbopack 문제(#71923)도 있었다. "Turbopack이 Safari에서 모듈 exports를 재정의하다 실패"라는 가설을 세웠고, WKWebView의 <code>app:///</code> 스킴이 모듈 재평가를 유발한다고 추론했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>결과: 방향은 맞았지만 원인 주체가 틀렸다.</b> <code>app:///</code> 스킴의 해석이 잘못되었다.</p>
+<h2 data-ke-size="size26">삽질 3: <code>"use no memo"</code> 적용</h2>
+<p data-ke-size="size16">React Compiler가 가장 유력한 원인이라고 판단해서, ready 페이지 관련 3개 컴포넌트에 <code>"use no memo"</code> 디렉티브를 적용했다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li><code>templates/ready-template.tsx</code></li>
+<li><code>components/ready/ready-payment.tsx</code></li>
+<li><code>components/common/paypal-button.tsx</code></li>
+</ul>
+<p data-ke-size="size16">세 컴포넌트 모두 단순한 구조라 성능 영향은 미미했지만, 결과적으로 이 조치는 이 에러에 대해서는 불필요했다.</p>
+<hr data-ke-style="style1" />
+<h2 data-ke-size="size26">전환점: Sentry 태그를 다시 보다</h2>
+<p data-ke-size="size16">분석 문서를 정리하고 나서, Sentry 태그를 다시 꼼꼼히 봤다.</p>
+<pre class="ini"><code>browser=Facebook 554.0.0
+browser.name=Facebook
+device=iPhone 13 Pro
+os=iOS 26.4
+mechanism=auto.browser.global_handlers.onerror
+handled=no
+url=https://readmypillars.com/.../ready</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><code>browser=Facebook 554.0.0</code>.</b> 이건 Safari가 아니라 Facebook 앱 내장 브라우저(Facebook In-App Browser)다.</p>
+<p data-ke-size="size16">그리고 결정적인 단서: <b>이 에러를 겪은 유저가 결제까지 성공적으로 완료</b>했다.<br /><br />DB에 status가 <code>done</code>으로 찍혀 있었다. <code>/ready</code> &rarr; <code>/loading</code> &rarr; <code>/my-result</code> 플로우가 정상 동작한 것이다.</p>
+<hr data-ke-style="style1" />
+<h2 data-ke-size="size26">결론: Facebook In-App Browser가 주입한 스크립트의 에러</h2>
+<p data-ke-size="size16">모든 퍼즐이 맞춰졌다.</p>
+<p data-ke-size="size16"><b>Facebook In-App Browser(FIAB)는 페이지를 로드할 때 자체 JavaScript를 주입한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 주입된 스크립트가 <code>global code</code> 시점에 <code>Object.defineProperty</code>를 호출하다가, Safari(iOS의 WKWebView)의 strict mode에서 readonly property 위반으로 TypeError가 발생한 것이다. 이 에러는 FIAB의 스크립트에서 발생한 것이지 내 앱 코드와는 무관하고, <code>window.onerror</code>를 통해 Sentry에 캡처된 것뿐이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">시간순으로 정리하면:</p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>유저가 Facebook 앱에서 우리 앱 링크를 탭</li>
+<li>Facebook In-App Browser가 페이지를 로드하면서 자체 스크립트를 주입</li>
+<li>주입된 스크립트가 <code>global code</code> 실행 시점에 <code>Object.defineProperty</code> 호출 &rarr; Safari strict mode에서 TypeError</li>
+<li><code>window.onerror</code>가 이 에러를 캡처</li>
+<li>Sentry SDK가 <code>beforeSend</code> 콜백을 통해 에러를 서버로 전송</li>
+<li><b>앱 코드는 정상 실행</b> &mdash; 유저는 결제 완료, status=done</li>
+</ol>
+<p data-ke-size="size16">이 에러에서 <code>app:///UUID/ready</code> 스킴은 WKWebView/Cordova 하이브리드 앱이 아니라, <b>FIAB가 주입한 스크립트의 내부 소스 URL</b>이었다.</p>
+<hr data-ke-style="style1" />
+<h2 data-ke-size="size26">대응</h2>
+<h3 data-ke-size="size23">적용한 것</h3>
+<p data-ke-size="size16"><code>instrumentation-client.ts</code>의 <code>beforeSend</code>에 서드파티 주입 스크립트 에러 필터링을 추가했다.</p>
+<pre class="php"><code>function isThirdPartyInjectedScriptError(event: Sentry.ErrorEvent): boolean {
+  const frames = event.exception?.values?.[0]?.stacktrace?.frames;
+  if (!frames?.length) return false;
+<p>const hasAppScheme = frames.some(
+(frame) =&gt; frame.filename?.startsWith(&quot;app:///&quot;)
+);</p>
+<p>const message = event.exception?.values?.[0]?.value ?? &quot;&quot;;
+const isReadonlyError = message.includes(&quot;readonly property&quot;);</p>
+<p>return hasAppScheme &amp;&amp; isReadonlyError;
+}</code></pre></p>
+<p data-ke-size="size16"><br />두 조건(<code>app:///</code> 스킴 + <code>readonly property</code> 메시지)을 AND로 결합해서 자체 앱 코드의 에러가 실수로 필터링되지 않도록 했다. <code>browser.name</code> 대신 <code>app:///</code> 스킴으로 필터링한 이유는, Facebook 외에 Instagram, LINE 등 다른 In-App Browser에서도 동일 패턴이 발생할 수 있기 때문이다.</p>
+<h3 data-ke-size="size23">보류 중인 것</h3>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li><code>"use no memo"</code> 제거: 추가 사례가 쌓여서 Facebook FIAB 전용 에러임이 확정되면 제거 예정</li>
+<li>이 에러 자체는 Facebook이나 Apple이 해결해야 할 문제이므로, 앱 쪽에서 할 수 있는 건 Sentry 노이즈 필터링이 전부</li>
+</ul>
+<hr data-ke-style="style1" />
+<h2 data-ke-size="size26">배운 것</h2>
+<h3 data-ke-size="size23">1. Sentry 태그를 먼저 봐야 한다</h3>
+<p data-ke-size="size16">스택 트레이스에 매몰되어 코드 레벨 분석부터 시작했는데, Sentry 태그의 <code>browser=Facebook 554.0.0</code>이 처음부터 답을 가지고 있었다. 에러의 "무엇(what)"보다 "어디서(where)"를 먼저 확인하는 습관이 필요하다.</p>
+<h3 data-ke-size="size23">2. 유저 플로우 확인이 에러의 심각도를 판별한다</h3>
+<p data-ke-size="size16">에러가 발생했는데 유저가 정상적으로 플로우를 완료했다면, 그건 앱 코드의 에러가 아닐 가능성이 높다. DB에서 해당 유저의 상태를 확인하는 것만으로 디버깅 방향이 크게 좁혀졌다.</p>
+<h3 data-ke-size="size23">3. <code>app:///</code> 스킴은 여러 컨텍스트에서 나타난다</h3>
+<p data-ke-size="size16"><code>app:///</code>를 보고 Cordova/WKWebView 하이브리드 앱으로 바로 연결지었는데, Facebook In-App Browser 같은 서드파티 앱의 주입 스크립트에서도 이 스킴이 사용된다. URL 스킴만으로 환경을 단정짓지 말고 다른 태그와 교차 검증해야 한다.</p>
+<h3 data-ke-size="size23">4. 서드파티 스크립트 에러는 프로덕션에서 흔하다</h3>
+<p data-ke-size="size16">In-App Browser, 광고 SDK, 브라우저 확장 프로그램 등이 주입하는 스크립트에서 발생하는 에러가 <code>window.onerror</code>를 통해 Sentry에 잡히는 건 드문 일이 아니다. <code>beforeSend</code>에서 <code>app:///</code>, <code>chrome-extension://</code> 등 서드파티 스킴의 에러를 필터링하는 건 Sentry 노이즈 관리의 기본이다.</p>
+<h3 data-ke-size="size23">5. 가설을 세울 때 "영향 범위"부터 확인하자</h3>
+<p data-ke-size="size16">React Compiler 가설 &rarr; Turbopack 가설 &rarr; FIAB 가설로 점점 좁혀졌는데, 처음부터 "이 에러가 앱 동작을 차단했는가?"를 확인했다면 훨씬 빨리 방향을 잡았을 것이다. 에러의 기술적 원인을 파기 전에, 비즈니스 임팩트부터 확인하는 게 효율적이다.</p>
