@@ -652,3 +652,8 @@ return imagePromise(url);
 <p>const results = await Promise.allSettled(promises);
 return results.filter((r) =&gt; r.status === &quot;fulfilled&quot;).length;
 }</code></pre></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23">역시 한번에 안된다.</h3>
+<p data-ke-size="size16"><a href="https://ifelseif.tistory.com/336" target="_blank" rel="noopener">2편</a>으로 이어짐</p>
+<p data-ke-size="size16">&nbsp;</p>
