@@ -1,4 +1,4 @@
-<h1>embedding 컬럼을 만들어두고 17일을 비워뒀다</h1>
+<h3 data-ke-size="size23">embedding 컬럼을 만들어두고 17일을 비워뒀다</h3>
 <p data-ke-size="size16">Claude와 ChatGPT등 LLM들이 공유하는 개인 메모리 레이어를 만들었다.<br />Next.js 라우트 하나, Postgres 테이블 하나,</p>
 <p data-ke-size="size16">툴 네 개(<code>remember</code> / <code>recall</code> / <code>list_memories</code> / <code>forget</code>)가 전부인 장난감 같은 도구다.</p>
 <p data-ke-size="size16">&nbsp;</p>
@@ -260,7 +260,7 @@ id: 78583c17-…</li>
 <hr data-ke-style="style1" />
 <h2 data-ke-size="size26">9. 그래서 지금은 LangGraph인가</h2>
 <p data-ke-size="size16">기능이 붙고 나서 처음의 질문을 다시 던져봤다.<br />답은 여전히 "아니다"인데, <b>이유가 달라졌다</b>는 게 흥미롭다.</p>
-<p data-ke-size="size16">처음엔 *"문제를 몰라서"* 안 썼다. 지금은 *"문제를 알아서"* 안 쓴다.</p>
+<p data-ke-size="size16">처음엔 "문제를 몰라서" 안 썼다. 지금은 "문제를 알아서" 안 쓴다.</p>
 <ul style="list-style-type: disc;" data-ke-list-type="disc">
 <li>이 서버의 툴은 전부 <b>요청 하나 = 판단 없는 왕복 하나</b>다. 그래프로 그릴 상태 기계가 없다.</li>
 <li>LangGraph의 값어치는 대부분 durable execution &mdash; 크래시 후 재개, 중간 개입, 타임트래블 &mdash; 에서 나온다. 전부 <i>요청 하나보다 오래 사는 프로세스</i>를 전제한다. 서버리스 함수가 정확히 그 반대다. <b>비용은 다 치르고 값은 거의 못 받는 배치</b>가 된다.</li>
