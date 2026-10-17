@@ -1,4 +1,4 @@
-<h2 data-ke-size="size26">TanStack Table v9 전환기 - 디렉티브 7개를 제거, 숨은 버그도 찾음..</h2>
+<h2 data-ke-size="size26">TanStack Table v9 전환기 - use no memo 7개 제거</h2>
 <p data-ke-size="size16">React Compiler와 TanStack Table v8의 호환성 문제를 정리한 글을 쓴 게 두 달 전이다.</p>
 <p data-ke-size="size16">그 글의 결론 중 하나가 "v9로 올리면 <code>"use no memo"</code>를 들고 가지 말 것"이었고, 할 일로 적어 두기만 하던 작업을 오늘 했다.</p>
 <p data-ke-size="size16">결과부터 적으면 이렇다.</p>
@@ -10,7 +10,7 @@
 </ul>
 <p data-ke-size="size16">마지막 줄이 이 글을 쓰는 이유다. 전편에서 "아직 안 터진다"고 적어 둔 경로가 실은 이미 터져 있었다.</p>
 <p data-ke-size="size16">프로젝트별 수치나 파일 목록은 빼고, 전편처럼 <b>다른 프로젝트에서도 남을 것</b>만 적는다.</p>
-<h2 data-ke-size="size26">1. 첫 번째 결정 &mdash; 테스트부터, 그것도 컴파일러를 켠 채로</h2>
+<h2 data-ke-size="size26">1. 첫 번째 결정 - 테스트부터, 그것도 컴파일러를 켠 채로</h2>
 <p data-ke-size="size16">프로젝트에 컴포넌트 테스트가 하나도 없었다. 단위 테스트는 수백 개 있었는데 전부 node 환경의 <code>.test.ts</code>였다.</p>
 <p data-ke-size="size16">라이브러리 교체에서 테스트는 새 동작이 아니라 <b>회귀 고정</b>이 목적이다. 그런데 이 부류의 회귀는 "에러 없이 화면만 옛 값"이다. 그래서 테스트를 세우기 전에 한 가지를 먼저 정해야 했다.</p>
 <blockquote data-ke-style="style1">
@@ -25,7 +25,7 @@ import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 <p>plugins: [react(), babel({ presets: [reactCompilerPreset({ target: &quot;19&quot; })] })],</code></pre></p>
 <p data-ke-size="size16">&nbsp;</p>
 <p data-ke-size="size16">함정이 하나 있었다. pnpm이 <code>@babel/core</code>를 8.x로 깔았는데, <code>babel-plugin-react-compiler@1.0.0</code>은 <code>@babel/types ^7</code>에 묶여 있다. <b>7.x로 고정</b>했다.</p>
-<h3 data-ke-size="size23">가드 테스트 &mdash; 테스트 환경 자체를 테스트한다</h3>
+<h3 data-ke-size="size23">가드 테스트 - 테스트 환경 자체를 테스트한다</h3>
 <p data-ke-size="size16">설정이 맞게 들어갔는지 확인할 방법이 필요했다.</p>
 <p data-ke-size="size16">누가 나중에 설정에서 프리셋을 빼면 모든 컴포넌트 테스트가 조용히 무력해지기 때문이다.</p>
 <p data-ke-size="size16">그래서 <b>컴파일러가 있으면 낡은 값을 보여야 하는</b> 테스트를 하나 넣었다.</p>
